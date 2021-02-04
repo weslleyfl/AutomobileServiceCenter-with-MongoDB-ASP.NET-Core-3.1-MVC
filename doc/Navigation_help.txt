@@ -1,0 +1,12 @@
+The content of Navigation.json will hold all the menu items and the associated information. Each navigation menu item has the following properties:
+
+• DisplayName: Text that needs to be displayed on the user interface.
+• MaterialIcon: Icon from Material Design that needs to be displayed along with the
+display name.
+• Link: URL to which the menu item should be redirected.
+• IsNested: This property indicates whether the current menu item has child menu
+items. In the processing logic that we are going to come up with, if any menu item
+has child menu items, then the URL link of the parent will be ignored.
+• Sequence: The display sequence of the menu items in the entire menu.
+• UserRoles: User roles that are allowed to view the current menu item.
+• NestedItems: If IsNested is True, the child navigation menu items will be stored in this array. Each child navigation item will share the same structure as any top-level menu item.

@@ -1,0 +1,8 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Erro") ? "error" : "check";
+
+    <i class="small material-icons">@statusMessageClass</i> @Model
+}

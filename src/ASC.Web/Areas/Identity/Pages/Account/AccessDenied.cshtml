@@ -1,0 +1,23 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class="row center">
+                <header>
+                    <h2>@ViewData["Title"]</h2>
+                </header>
+                <content>
+                    <p class="text-info">
+                        <i class="small material-icons">block</i>  Você não tem acesso a este recurso.
+                    </p>
+                </content>
+            </div>
+        </div>
+    </div>
+
+</div>

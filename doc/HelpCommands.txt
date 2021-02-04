@@ -1,0 +1,26 @@
+--Installing REDIS on Windows
+Installing Chocolatey on a local machine
+C:\> choco install redis-64 
+SET PATH=%PATH%;"c:\Program Files\Redis
+
+Once the installation is complete, we can run the Redis server instance using the command 
+c:\ redis-server.exe
+
+Pacotes
+
+Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 5.0.1
+
+Microsoft.Extensions.Caching.Redis
+Ex: https://canro91.github.io/2020/06/29/HowToAddACacheLayer/
+
+ler via cmd:
+
+redis-cli
+keys *
+hgetall ASCInstanceMasterDataCache
+
+via aplicativo: Another Redis Desktop
+ "CacheConnectionString": "localhost,port: 6379, password=Redis2019!",
+
+-- pasta Doc do projeto
+docker-compose up -d
