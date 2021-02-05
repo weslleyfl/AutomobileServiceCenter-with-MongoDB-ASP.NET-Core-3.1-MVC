@@ -32,16 +32,29 @@ git push -u origin master
 git diff --name-only
 git show --name-only
 
-To revert the changes in the commit to the previous state, we need to use the git reset command, as
-shown in Figure 12-48. --hard tells Git to discard the changes. If we do not want to discard the changes, we
+To revert the changes in the commit to the previous state, we need to use the git reset command, 
+--hard tells Git to discard the changes. If we do not want to discard the changes, we
 should use --soft. HEAD~1 tells Git to move to one before the current revision, which means undoing the
 current commit.
+
+git reset --hard HEAD~1
+
+-- Reset an unwanted commit from "Remote Repository"
+If we want to revert that commit from the remote repository, we can use the git reset and push commands.
+git reset <id> --hard
+git push -u origin <master ou branch> -f
+
 
 Both git reset and git rebase will affect your local branch. They will force your local branch 
 to be in sync with a certain commit. The difference is that:
 
 "git reset --hard {commit-id}" will use a commit in local history.
 "git rebase origin/{branch-name}" will use the latest commit in the repo
+
+Para caso onde voce nao realizou um push (Remote Repository)
+git rebase -i 
+No arquivo que abrir voce apaga o commit desejado e salve e feche o editor.
+O git vai refezar as alteraçoes no codigo.
 
 When to use reset?
 
@@ -55,3 +68,46 @@ When you commit and try to push to origin, you realized your colleague has make 
 changes and already pushed it to origin. Let's say you think refactoring the name again (using an IDE) 
 is easier than going through all the conflict files, you can choose to rebase which will erase 
 your work and keep your colleague's one untouched.
+
+
+- Resolve merge conflicts in source code
+git fetch origin
+git merge origin/dev
+(git pull - executa os dois comandos acima) 
+
+git stash (esconder)
+Use o comando git stash quando quiser gravar a condição atual do diretório ativo e do índice, 
+porém queira voltar para um diretório funcional limpo. O comando salva as suas alterações locais 
+e reverte o diretório de trabalho para coincidir ao commit HEAD.
+
+
+Fluxo de trabalho interrompido
+Quando você está no meio de alguma coisa, seu chefe entra e exige que você conserte algo imediatamente. 
+Tradicionalmente, você faria um commit em um ramo temporário para armazenar as suas alterações e 
+retornava ao ramo original para fazer a correção de emergência, assim:
+
+# ... hack hack hack ...
+$ git switch -c my_wip
+$ git commit -a -m "WIP"
+$ git switch master
+$ edit emergency fix
+$ git commit -a -m "Arruma na pressa"
+$ git switch my_wip
+$ git reset --soft HEAD^
+# ... continue a hackear ...
+Você pode utilizar o comando git stash para simplificar o exemplo acima:
+
+# ... hack hack hack ...
+$ git stash
+$ edit emergency fix
+$ git commit -a -m "Arrumando na correria"
+$ git stash pop
+# ... continue a hackear ...
+
+
+--- Enviando alteraçoes para Master
+git checkout master
+git merge dev (branch)
+git pull
+git commit -a -m "Master merge with dev"
+git push -u origin master
