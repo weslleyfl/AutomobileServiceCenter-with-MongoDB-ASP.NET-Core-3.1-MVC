@@ -26,3 +26,32 @@ git merge origin/dev
 git checkout master
 git merge dev
 git push -u origin master
+
+
+-- Reset an unwanted commit from *Local Repository*
+git diff --name-only
+git show --name-only
+
+To revert the changes in the commit to the previous state, we need to use the git reset command, as
+shown in Figure 12-48. --hard tells Git to discard the changes. If we do not want to discard the changes, we
+should use --soft. HEAD~1 tells Git to move to one before the current revision, which means undoing the
+current commit.
+
+Both git reset and git rebase will affect your local branch. They will force your local branch 
+to be in sync with a certain commit. The difference is that:
+
+"git reset --hard {commit-id}" will use a commit in local history.
+"git rebase origin/{branch-name}" will use the latest commit in the repo
+
+When to use reset?
+
+Let's say you finish your work and commit locally. Then your cat walk across the keyboard, 
+and somehow you carelessly commit your cat's work. Use reset.
+
+When to use rebase?
+
+Let's say you refactor the name of a function/class and this change affect many files. 
+When you commit and try to push to origin, you realized your colleague has make some important 
+changes and already pushed it to origin. Let's say you think refactoring the name again (using an IDE) 
+is easier than going through all the conflict files, you can choose to rebase which will erase 
+your work and keep your colleague's one untouched.
